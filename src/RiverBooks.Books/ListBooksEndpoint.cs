@@ -13,22 +13,20 @@ namespace RiverBooks.Books;
 
 internal class ListBooksEndpoint(IBookService bookService) : EndpointWithoutRequest<ListBooksResponse>
 {
-    public override async Task HandleAsync(CancellationToken ct)
-    {
-        await SendAsync(new ListBooksResponse
-        {
-            Books = bookService.ListBooks()
-        }, 200, ct);
-    }
+  public override async Task HandleAsync(CancellationToken ct)
+  {
+    var books = await bookService.ListBooksAsync();
+    await SendAsync(new ListBooksResponse { Books = books }, 200, ct);
+  }
 
-    public override void Configure()
-    {
-        Get("/books");
-        AllowAnonymous();
-    }
+  public override void Configure()
+  {
+    Get("/books");
+    AllowAnonymous();
+  }
 }
 
 public class ListBooksResponse
 {
-    public IReadOnlyCollection<BookDto> Books { get; set; }
+  public IReadOnlyCollection<BookDto> Books { get; set; } = Array.Empty<BookDto>();
 }
