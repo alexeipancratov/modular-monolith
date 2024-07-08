@@ -22,7 +22,7 @@ internal class BookConfiguration : IEntityTypeConfiguration<Book>
     builder.HasData(GetSampleBookData());
   }
 
-  private IEnumerable<Book> GetSampleBookData()
+  private static IEnumerable<Book> GetSampleBookData()
   {
     const string tolkien = "J.R.R. Tolkien";
     yield return new Book(Book1Guid, "The Fellowship of the Ring", tolkien, 10.99m);

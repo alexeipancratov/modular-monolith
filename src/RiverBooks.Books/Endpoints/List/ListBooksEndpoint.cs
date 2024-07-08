@@ -11,7 +11,7 @@ namespace RiverBooks.Books;
 //     }
 // }
 
-internal class ListBooksEndpoint(IBookService bookService) : EndpointWithoutRequest<ListBooksResponse>
+internal class ListEndpoint(IBookService bookService) : EndpointWithoutRequest<ListBooksResponse>
 {
   public override async Task HandleAsync(CancellationToken ct)
   {

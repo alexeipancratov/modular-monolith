@@ -1,15 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace RiverBooks.Books;
-
-internal interface IBookRepository : IReadOnlyBookRepository
-{
-  Task AddAsync(Book book);
-  
-  Task DeleteAsync(Book book);
-  
-  Task SaveChangesAsync();
-}
 
 internal class EfBookRepository(BookDbContext dbContext) : IBookRepository
 {

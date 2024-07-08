@@ -4,3 +4,18 @@ GET {{RiverBooks.Web_HostAddress}}/books/
 Accept: application/json
 
 ###
+GET {{RiverBooks.Web_HostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
+
+###
+POST {{RiverBooks.Web_HostAddress}}/books
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "New book test",
+  "author": "Alexei P",
+  "price": 10.990000
+}
+
+###
+DELETE {{RiverBooks.Web_HostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
