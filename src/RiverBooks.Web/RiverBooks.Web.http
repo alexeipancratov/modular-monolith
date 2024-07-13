@@ -19,3 +19,12 @@ Content-Type: application/json
 
 ###
 DELETE {{RiverBooks.Web_HostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
+
+###
+POST {{RiverBooks.Web_HostAddress}}/books/98999DE8-FBEF-4918-ADFE-DDA0F8B702D9/pricehistory
+Accept: application/json
+Content-Type: application/json
+
+{
+"newPrice": -1
+}

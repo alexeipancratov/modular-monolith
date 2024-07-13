@@ -1,3 +1,5 @@
+using RiverBooks.Books.Data;
+
 namespace RiverBooks.Books;
 
 internal class BookService(IBookRepository bookRepository) : IBookService

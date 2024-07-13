@@ -3,7 +3,7 @@ using RiverBooks.Books.Endpoints.GetById;
 
 namespace RiverBooks.Books.Endpoints.Create;
 
-internal class CreateEndpoint(IBookService bookService) : Endpoint<CreateBookRequest, BookDto>
+internal class CreateBookEndpoint(IBookService bookService) : Endpoint<CreateBookRequest, BookDto>
 {
   private readonly IBookService _bookService = bookService;
   

@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 
-namespace RiverBooks.Books;
+namespace RiverBooks.Books.Endpoints.List;
 
 // ASP.NET Core version.
 // public static class BooksEndpoints
@@ -11,7 +11,7 @@ namespace RiverBooks.Books;
 //     }
 // }
 
-internal class ListEndpoint(IBookService bookService) : EndpointWithoutRequest<ListBooksResponse>
+internal class ListBooksEndpoint(IBookService bookService) : EndpointWithoutRequest<ListBooksResponse>
 {
   public override async Task HandleAsync(CancellationToken ct)
   {
