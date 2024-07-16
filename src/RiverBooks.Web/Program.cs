@@ -1,4 +1,5 @@
 using FastEndpoints;
+using FastEndpoints.Swagger;
 using RiverBooks.Books;
 using RiverBooks.Users;
 using Serilog;
@@ -15,9 +16,10 @@ var builder = WebApplication.CreateBuilder(args);
 // After the app is initialized we can now register Serilog
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddFastEndpoints();
+builder.Services.AddFastEndpoints()
+  .AddAuthorization()
+  .SwaggerDocument()
+  .AddAuthentication().AddJwtBearer();
 
 // Add Module Services
 builder.Services.AddBookModuleServices(builder.Configuration, logger);
@@ -25,15 +27,11 @@ builder.Services.AddUserModuleServices(builder.Configuration, logger);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-  app.UseSwagger();
-  app.UseSwaggerUI();
-}
+app.UseAuthentication()
+  .UseAuthorization();
 
-app.UseHttpsRedirection();
-app.UseFastEndpoints();
+app.UseFastEndpoints()
+  .UseSwaggerGen();
 
 app.Run();
 
