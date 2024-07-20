@@ -14,6 +14,9 @@ To update the testing DB run this command from the Web project folder
 
 ## Users Module
 
+Contains User and Cart Item entities. Please note that the latter could be its own module,
+however for this application the decision was made to store it in the same module.
+
 Create migration
 
 `dotnet ef migrations add CartItems -c UsersDbContext -p ../RiverBooks.Users/RiverBooks.Users.csproj -s ./RiverBooks.Web.csproj -o Data/Migrations`
