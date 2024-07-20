@@ -30,3 +30,5 @@ This module uses MediatR as opposed to application service as it is the case in 
 ## Integration between modules
 Integration is done using MediatR and a separate Contracts project. Having that projects eliminates a possible
 circular dependency between these two modules.
+
+Alternatively, to integrate with the Books module we could've used Materialized View (SQL).
