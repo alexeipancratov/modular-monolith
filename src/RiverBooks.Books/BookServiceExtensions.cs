@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +11,7 @@ public static class BookServiceExtensions
 {
   public static IServiceCollection AddBookModuleServices(this IServiceCollection services,
     IConfiguration configuration,
-    ILogger logger)
+    ILogger logger, List<Assembly> mediatRAssemblies)
   {
     // Data access
     string? connectionString = configuration.GetConnectionString("BooksConnectionString");
@@ -19,6 +20,7 @@ public static class BookServiceExtensions
     
     // Application
     services.AddScoped<IBookService, BookService>();
+    mediatRAssemblies.Add(typeof(BookServiceExtensions).Assembly);
     
     logger.Information("{Module} module services registered.", "Books");
     

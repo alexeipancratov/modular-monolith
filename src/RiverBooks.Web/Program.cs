@@ -1,4 +1,6 @@
+using System.Reflection;
 using FastEndpoints;
+using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using RiverBooks.Books;
 using RiverBooks.Users;
@@ -17,13 +19,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
 builder.Services.AddFastEndpoints()
+  .AddAuthenticationJwtBearer(opt => opt.SigningKey = builder.Configuration["Auth:JwtSecret"])
   .AddAuthorization()
-  .SwaggerDocument()
-  .AddAuthentication().AddJwtBearer();
+  .SwaggerDocument();
 
 // Add Module Services
-builder.Services.AddBookModuleServices(builder.Configuration, logger);
-builder.Services.AddUserModuleServices(builder.Configuration, logger);
+List<Assembly> mediatRAssemblies = [typeof(Program).Assembly];
+builder.Services.AddBookModuleServices(builder.Configuration, logger, mediatRAssemblies);
+builder.Services.AddUserModuleServices(builder.Configuration, logger, mediatRAssemblies);
+
+// Set up MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));
 
 var app = builder.Build();
 

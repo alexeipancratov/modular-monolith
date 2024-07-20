@@ -40,6 +40,7 @@ Content-Type: application/json
 }
 
 ###
+# Login
 POST {{RiverBooks.Web_HostAddress}}/users/login
 Accept: application/json
 Content-Type: application/json
@@ -50,4 +51,21 @@ Content-Type: application/json
 }
 
 ###
-@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6ImFsZXhlaUB0ZXN0LmNvbSIsImlhdCI6MTcyMTA4ODk1MywiZXhwIjoxNzIxMDkyNTUzLCJuYmYiOjE3MjEwODg5NTN9.7tcdOcUteN5g-GalcRGL7MHigynu1AxF2K4qPVSfPdU
+@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJhbGV4ZWlAdGVzdC5jb20iLCJpYXQiOjE3MjE1MDAyOTMsImV4cCI6MTcyMTUwMzg5MywibmJmIjoxNzIxNTAwMjkzfQ.C--3CbXWRipYe6zyRX185wH55DoXTd2Wv9WeuvBvca0
+
+# Add item to cart
+POST {{RiverBooks.Web_HostAddress}}/cart
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "bookId": "12c87934-3fac-4008-8553-49aecc4bd762",
+  "quantity": 1
+}
+
+###
+# List items in cart
+GET {{RiverBooks.Web_HostAddress}}/cart
+Accept: application/json
+Authorization: Bearer {{token}}

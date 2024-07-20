@@ -3,7 +3,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using Microsoft.AspNetCore.Identity;
 
-namespace RiverBooks.Users.Endpoints;
+namespace RiverBooks.Users.UserEndpoints;
 
 internal record UserLoginRequest(string Email, string Password);
 
@@ -37,7 +37,7 @@ internal class LoginEndpoint(UserManager<ApplicationUser> userManager) : Endpoin
     var jwtSecret = Config["Auth:JwtSecret"];
     var token = JwtBearer.CreateToken(opt =>
     {
-      opt.User.Claims.Add(new Claim("Email", user.Email!));
+      opt.User.Claims.Add(new Claim("EmailAddress", user.Email!));
       opt.SigningKey = jwtSecret!;
     });
 

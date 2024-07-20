@@ -11,3 +11,13 @@ production ready project we'd use vertical slices ideally instead (https://deviq
 To update the testing DB run this command from the Web project folder
 
 `dotnet ef database update -- --environment Testing`
+
+## Users Module
+
+Create migration
+
+`dotnet ef migrations add CartItems -c UsersDbContext -p ../RiverBooks.Users/RiverBooks.Users.csproj -s ./RiverBooks.Web.csproj -o Data/Migrations`
+
+Apply migration
+
+`dotnet ef database update -c UsersDbContext`
