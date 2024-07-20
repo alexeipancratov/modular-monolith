@@ -31,4 +31,14 @@ public class CartItem
   {
     Quantity = itemQuantity;
   }
+
+  public void UpdateDescription(string description)
+  {
+    Description = Guard.Against.NullOrEmpty(description);
+  }
+
+  public void UpdatePrice(decimal unitPrice)
+  {
+    UnitPrice = Guard.Against.Negative(unitPrice);
+  }
 }

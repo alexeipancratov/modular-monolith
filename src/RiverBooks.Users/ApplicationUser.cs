@@ -17,8 +17,10 @@ public class ApplicationUser : IdentityUser
     var existingBookItem = _cartItems.SingleOrDefault(i => i.BookId == item.BookId);
     if (existingBookItem != null)
     {
+      // TODO: The question still remains what happens if these details get updated outside of user adding one more item.
       existingBookItem.UpdateQuantity(existingBookItem.Quantity + item.Quantity);
-      // TODO: What to do if other details of the item have been updated?
+      existingBookItem.UpdateDescription(existingBookItem.Description);
+      existingBookItem.UpdatePrice(existingBookItem.UnitPrice);
       return;
     }
 

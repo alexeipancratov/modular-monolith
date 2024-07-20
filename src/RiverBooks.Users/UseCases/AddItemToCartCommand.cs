@@ -1,15 +1,16 @@
 using Ardalis.Result;
 using MediatR;
-using RiverBooks.Users.Data.Repositories;
+using RiverBooks.Books.Contracts;
 
 namespace RiverBooks.Users.UseCases;
 
 public record AddItemToCartCommand(Guid BookId, int Quantity, string EmailAddres) : IRequest<Result>;
 
-public class AddItemToCartCommandHandler(IApplicationUserRepository userRepository)
+public class AddItemToCartCommandHandler(IApplicationUserRepository userRepository, IMediator mediator)
   : IRequestHandler<AddItemToCartCommand, Result>
 {
   private readonly IApplicationUserRepository _userRepository = userRepository;
+  private readonly IMediator _mediator = mediator;
 
   public async Task<Result> Handle(AddItemToCartCommand request, CancellationToken cancellationToken)
   {
@@ -19,8 +20,17 @@ public class AddItemToCartCommandHandler(IApplicationUserRepository userReposito
       return Result.Unauthorized();
     }
 
-    // TODO: Get Description from the Books module.
-    var newCartItem = new CartItem(request.BookId, "description", request.Quantity, 1.00m);
+    // Get Description from the Books module.
+    var bookDetailsResult = await _mediator.Send(new GetBookDetailsQuery(request.BookId), cancellationToken);
+    if (bookDetailsResult.Status == ResultStatus.NotFound)
+    {
+      return Result.NotFound();
+    }
+
+    var bookDetails = bookDetailsResult.Value;
+    var description = $"{bookDetails.Title} by {bookDetails.Author}";
+    
+    var newCartItem = new CartItem(request.BookId, description, request.Quantity, bookDetails.Price);
 
     user.AddCardItem(newCartItem);
 

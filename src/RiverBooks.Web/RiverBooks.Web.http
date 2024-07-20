@@ -60,7 +60,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "bookId": "12c87934-3fac-4008-8553-49aecc4bd762",
+  "bookId": "eb9dcad0-6986-43ff-9a25-11fc79a31448",
   "quantity": 1
 }
 
