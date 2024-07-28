@@ -27,6 +27,14 @@ This module uses MediatR as opposed to application service as it is the case in 
 
 `dotnet ef database update -c UsersDbContext`
 
+## Order Processing Module
+
+### Create and apply migration
+
+`dotnet ef migrations add Initial_OrderProcessing -c OrderProcessingDbContext -p ../RiverBooks.OrderProcessing/RiverBooks.OrderProcessing.csproj -s ./RiverBooks.Web.csproj -o Data/Migrations`
+
+`dotnet ef database update -c OrderProcessingDbContext`
+
 ## Integration between modules
 Integration is done using MediatR and a separate Contracts project. Having that projects eliminates a possible
 circular dependency between these two modules.
