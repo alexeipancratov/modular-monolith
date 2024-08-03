@@ -30,7 +30,7 @@ public class ListOrdersForUserEndpoint(IMediator mediator) : EndpointWithoutRequ
     else
     {
       var response = new ListOrdersForUserResponse { Orders = result.Value };
-      await SendAsync(response, 200, ct);
+      await SendOkAsync(response, ct);
     }
   }
 }

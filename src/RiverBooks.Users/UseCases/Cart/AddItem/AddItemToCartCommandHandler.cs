@@ -2,9 +2,7 @@ using Ardalis.Result;
 using MediatR;
 using RiverBooks.Books.Contracts;
 
-namespace RiverBooks.Users.UseCases;
-
-public record AddItemToCartCommand(Guid BookId, int Quantity, string EmailAddres) : IRequest<Result>;
+namespace RiverBooks.Users.UseCases.Cart.AddItem;
 
 public class AddItemToCartCommandHandler(IApplicationUserRepository userRepository, IMediator mediator)
   : IRequestHandler<AddItemToCartCommand, Result>

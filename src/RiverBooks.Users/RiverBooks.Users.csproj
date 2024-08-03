@@ -20,14 +20,15 @@
       <PackageReference Include="Ardalis.Result" Version="9.1.0" />
       <PackageReference Include="FastEndpoints" Version="5.27.0" />
       <PackageReference Include="FastEndpoints.Security" Version="5.27.0" />
-      <PackageReference Include="MediatR" Version="12.3.0" />
+      <PackageReference Include="MediatR" Version="12.4.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
-      <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+      <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\RiverBooks.Books.Contracts\RiverBooks.Books.Contracts.csproj" />
+      <ProjectReference Include="..\RiverBooks.OrderProcessing.Contracts\RiverBooks.OrderProcessing.Contracts.csproj" />
     </ItemGroup>
 
 </Project>
