@@ -9,6 +9,9 @@ public class ApplicationUser : IdentityUser
 
   private readonly List<CartItem> _cartItems = new();
   public IReadOnlyCollection<CartItem> CartItems => _cartItems.AsReadOnly();
+  
+  private readonly List<UserStreetAddress> _addresses = new();
+  public IReadOnlyCollection<UserStreetAddress> Addresses => _addresses.AsReadOnly();
 
   public void AddCardItem(CartItem item)
   {
@@ -30,5 +33,13 @@ public class ApplicationUser : IdentityUser
   public void ClearCart()
   {
     _cartItems.Clear();
+  }
+
+  public UserStreetAddress AddAddress(Address addressToAdd)
+  {
+    var userStreetAddress = new UserStreetAddress(Id, addressToAdd);
+    _addresses.Add(userStreetAddress);
+
+    return userStreetAddress;
   }
 }

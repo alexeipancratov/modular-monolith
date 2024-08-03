@@ -3,7 +3,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using Microsoft.AspNetCore.Identity;
 
-namespace RiverBooks.Users.UserEndpoints;
+namespace RiverBooks.Users.Endpoints;
 
 internal record UserLoginRequest(string Email, string Password);
 
