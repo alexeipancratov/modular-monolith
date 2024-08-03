@@ -1,12 +1,16 @@
 @RiverBooks.Web_HostAddress = https://localhost:7153
 
+###
+# Get all books - Books module
 GET {{RiverBooks.Web_HostAddress}}/books/
 Accept: application/json
 
 ###
+# Get a book - Books module
 GET {{RiverBooks.Web_HostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
 
 ###
+# Add a new book - Books module
 POST {{RiverBooks.Web_HostAddress}}/books
 Accept: application/json
 Content-Type: application/json
@@ -18,9 +22,11 @@ Content-Type: application/json
 }
 
 ###
+# Delete a book - Books module
 DELETE {{RiverBooks.Web_HostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
 
 ###
+# Update price of a book - Books module
 POST {{RiverBooks.Web_HostAddress}}/books/98999DE8-FBEF-4918-ADFE-DDA0F8B702D9/pricehistory
 Accept: application/json
 Content-Type: application/json
@@ -30,6 +36,7 @@ Content-Type: application/json
 }
 
 ###
+# Create new user - Users module
 POST {{RiverBooks.Web_HostAddress}}/users
 Accept: application/json
 Content-Type: application/json
@@ -40,7 +47,7 @@ Content-Type: application/json
 }
 
 ###
-# Login
+# Login - Users module
 POST {{RiverBooks.Web_HostAddress}}/users/login
 Accept: application/json
 Content-Type: application/json
@@ -53,7 +60,7 @@ Content-Type: application/json
 ###
 @token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJhbGV4ZWlAdGVzdC5jb20iLCJpYXQiOjE3MjI3MDUxOTcsImV4cCI6MTcyMjcwODc5NywibmJmIjoxNzIyNzA1MTk3fQ.BLdlIugih4JTHID-3un0QncwuAjQ6cqFwbQXOiw1MUc
 
-# Add item to cart
+# Add item to cart - Users module
 POST {{RiverBooks.Web_HostAddress}}/cart
 Accept: application/json
 Authorization: Bearer {{token}}
@@ -65,19 +72,19 @@ Content-Type: application/json
 }
 
 ###
-# List items in cart
+# List items in cart - Users module
 GET {{RiverBooks.Web_HostAddress}}/cart
 Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
-# Get orders
+# Get orders - Order Processing module
 GET {{RiverBooks.Web_HostAddress}}/orders
 Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
-# Checkout cart
+# Checkout cart - Users module
 POST {{RiverBooks.Web_HostAddress}}/cart/checkout
 Content-Type: application/json
 Authorization: Bearer {{token}}
