@@ -40,3 +40,10 @@ Integration is done using MediatR and a separate Contracts project. Having that 
 circular dependency between two modules.
 
 Alternatively, to integrate with the Books module we could've used Materialized View (SQL).
+
+## Materialized View
+An actual implementation of the Materialized View pattern is implemented for the Order Addresses functionality.
+User addresses are ultimately being stored in the Users module, but Order Processing module needs them too.
+In order to avoid fetching addresses every time Order Processing module implements the materialized view pattern
+where it maintains a Redis cache copy of the user addresses which are being updated based on the
+`NewUserAddressAddedIntegrationEvent` which is being emitted by the Users module.

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RiverBooks.OrderProcessing.MaterializedViews;
 using Serilog;
 
 namespace RiverBooks.OrderProcessing;
@@ -19,6 +20,7 @@ public static class OrderProcessingModuleExtensions
     
     // Add Order Processing module services.
     services.AddScoped<IOrderRepository, EfOrderRepository>();
+    services.AddScoped<IOrderAddressCache, RedisOrderAddressCache>();
     
     logger.Information("{Module} module services registered.", "OrderProcessing");
     

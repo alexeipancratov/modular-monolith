@@ -3,14 +3,19 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using RiverBooks.OrderProcessing.Contracts.Commands;
 using RiverBooks.OrderProcessing.Contracts.Models;
+using RiverBooks.OrderProcessing.MaterializedViews;
 
 namespace RiverBooks.OrderProcessing.Integrations;
 
-internal class CreateOrderCommandHandler(IOrderRepository orderRepository, ILogger<CreateOrderCommandHandler> logger)
+internal class CreateOrderCommandHandler(
+  IOrderRepository orderRepository,
+  ILogger<CreateOrderCommandHandler> logger,
+  IOrderAddressCache addressCache)
   : IRequestHandler<CreateOrderCommand, Result<OrderDetailsResponse>>
 {
   private readonly IOrderRepository _orderRepository = orderRepository;
   private readonly ILogger<CreateOrderCommandHandler> _logger = logger;
+  private readonly IOrderAddressCache _addressCache = addressCache;
 
   public async Task<Result<OrderDetailsResponse>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
   {
@@ -19,10 +24,15 @@ internal class CreateOrderCommandHandler(IOrderRepository orderRepository, ILogg
       .ToArray();
 
     // TODO: Fetch real addresses.
-    var shippingAddress = new Address("123 Main St", "", "Kent", "NY", "12345", "US");
-    var billingAddress = shippingAddress;
+    // var shippingAddress = new Address("123 Main St", "", "Kent", "NY", "12345", "US");
+    // var billingAddress = shippingAddress;
+    var shippingAddress = await _addressCache.GetByIdAsync(request.ShippingAddressId);
+    var billingAddress = await _addressCache.GetByIdAsync(request.BillingAddressId);
 
-    var newOrder = Order.Factory.Create(request.UserId, shippingAddress, billingAddress, items);
+    var newOrder = Order.Factory.Create(request.UserId,
+      shippingAddress.Value.Address,
+      billingAddress.Value.Address,
+      items);
 
     await _orderRepository.AddAsync(newOrder);
     await _orderRepository.SaveChangesAsync();

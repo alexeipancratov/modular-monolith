@@ -14,9 +14,11 @@
     <PackageReference Include="MediatR" Version="12.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    <PackageReference Include="StackExchange.Redis" Version="2.8.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\RiverBooks.Users.Contracts\RiverBooks.Users.Contracts.csproj" />
     <ProjectReference Include="..\RiverBooks.OrderProcessing.Contracts\RiverBooks.OrderProcessing.Contracts.csproj" />
   </ItemGroup>
 
