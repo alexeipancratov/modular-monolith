@@ -53,3 +53,12 @@ In order to test this functionality:
 1. add a new address to the user
 2. add an item to the cart
 3. checkout and indicate the ID of the newly added address as both Billing/Shipping
+
+## Clean Architecture
+Users and OrderProcessing modules in this solution follow the Clean Architecture pattern,
+although we're not breaking down each module into separate projects which would normally enforce
+the Clean Architecture rules (e.g., Clean Architecture solution pattern).
+This is the usual approach in modular monoliths. However, in order to continue enforcing these
+principles we're using ArchUnit tests.
+NOTE: We're not separating logic into several assemblies in Modular Monolith because
+we want to be able to enforce access using the `internal` keyword. (review this again later)
