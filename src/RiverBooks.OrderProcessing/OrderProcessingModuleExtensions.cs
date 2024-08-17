@@ -20,7 +20,10 @@ public static class OrderProcessingModuleExtensions
     
     // Add Order Processing module services.
     services.AddScoped<IOrderRepository, EfOrderRepository>();
-    services.AddScoped<IOrderAddressCache, RedisOrderAddressCache>();
+    // NOTE: here ReadThroughOrderAddressCache needs to override RedisOrderAddressCache since it's its decorator
+    // with an additional logic.
+    services.AddScoped<RedisOrderAddressCache>();
+    services.AddScoped<IOrderAddressCache, ReadThroughOrderAddressCache>();
     
     logger.Information("{Module} module services registered.", "OrderProcessing");
     

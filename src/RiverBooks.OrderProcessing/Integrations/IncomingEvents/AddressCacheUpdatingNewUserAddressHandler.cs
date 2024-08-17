@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using RiverBooks.OrderProcessing.MaterializedViews;
 using RiverBooks.Users.Contracts.IntegrationEvents;
 
-namespace RiverBooks.OrderProcessing.IncomingIntegrations;
+namespace RiverBooks.OrderProcessing.Integrations.IncomingEvents;
 
 internal class AddressCacheUpdatingNewUserAddressHandler(
   IOrderAddressCache orderAddressCache,

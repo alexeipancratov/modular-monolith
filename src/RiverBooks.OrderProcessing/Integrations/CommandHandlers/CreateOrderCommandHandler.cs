@@ -5,7 +5,7 @@ using RiverBooks.OrderProcessing.Contracts.Commands;
 using RiverBooks.OrderProcessing.Contracts.Models;
 using RiverBooks.OrderProcessing.MaterializedViews;
 
-namespace RiverBooks.OrderProcessing.Integrations;
+namespace RiverBooks.OrderProcessing.Integrations.CommandHandlers;
 
 internal class CreateOrderCommandHandler(
   IOrderRepository orderRepository,
@@ -22,10 +22,7 @@ internal class CreateOrderCommandHandler(
     var items = request.OrderItems.Select(oi => new OrderItem(
         oi.BookId, oi.Quantity, oi.UnitPrice, oi.Description))
       .ToArray();
-
-    // TODO: Fetch real addresses.
-    // var shippingAddress = new Address("123 Main St", "", "Kent", "NY", "12345", "US");
-    // var billingAddress = shippingAddress;
+    
     var shippingAddress = await _addressCache.GetByIdAsync(request.ShippingAddressId);
     var billingAddress = await _addressCache.GetByIdAsync(request.BillingAddressId);
 

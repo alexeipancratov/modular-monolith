@@ -12,6 +12,8 @@ public class UsersDbContext(
   private readonly IDomainEventDispatcher _domainEventDispatcher = domainEventDispatcher;
   
   public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+  
+  public DbSet<UserStreetAddress> UserStreetAddresses { get; set; }
 
   protected override void OnModelCreating(ModelBuilder builder)
   {

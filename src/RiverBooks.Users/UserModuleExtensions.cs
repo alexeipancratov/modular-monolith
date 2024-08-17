@@ -25,6 +25,7 @@ public static class UserModuleExtensions
     
     // Add User module services.
     services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
+    services.AddScoped<IReadOnlyUserStreetAddressRepository, EfUserStreetAddressRepository>();
 
     // TODO: Register it as an app wide dependency.
     services.AddScoped<IDomainEventDispatcher, MediatrDomainEventDispatcher>();
