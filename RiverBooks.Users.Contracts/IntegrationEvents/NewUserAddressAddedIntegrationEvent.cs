@@ -1,3 +1,5 @@
+using RiverBooks.SharedKernel;
+
 namespace RiverBooks.Users.Contracts.IntegrationEvents;
 
 /// <summary>

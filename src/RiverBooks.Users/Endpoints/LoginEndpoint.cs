@@ -2,6 +2,7 @@ using System.Security.Claims;
 using FastEndpoints;
 using FastEndpoints.Security;
 using Microsoft.AspNetCore.Identity;
+using RiverBooks.Users.Domain;
 
 namespace RiverBooks.Users.Endpoints;
 

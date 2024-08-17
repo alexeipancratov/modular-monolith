@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using RiverBooks.Users.Data;
-using RiverBooks.Users.Data.Repositories;
-using RiverBooks.Users.DomainEvents.Infrastructure;
+using RiverBooks.SharedKernel;
+using RiverBooks.Users.Domain;
+using RiverBooks.Users.Infrastructure.Data;
+using RiverBooks.Users.Infrastructure.Data.Repositories;
+using RiverBooks.Users.Interfaces;
 using Serilog;
 
 namespace RiverBooks.Users;
@@ -26,9 +28,6 @@ public static class UserModuleExtensions
     // Add User module services.
     services.AddScoped<IApplicationUserRepository, EfApplicationUserRepository>();
     services.AddScoped<IReadOnlyUserStreetAddressRepository, EfUserStreetAddressRepository>();
-
-    // TODO: Register it as an app wide dependency.
-    services.AddScoped<IDomainEventDispatcher, MediatrDomainEventDispatcher>();
     
     logger.Information("{Module} module services registered.", "Users");
     

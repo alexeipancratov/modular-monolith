@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using RiverBooks.Users.Contracts;
 using RiverBooks.Users.Contracts.IntegrationEvents;
-using RiverBooks.Users.DomainEvents;
+using RiverBooks.Users.Domain.DomainEvents;
 
 namespace RiverBooks.Users.Integrations.Outgoing;
 

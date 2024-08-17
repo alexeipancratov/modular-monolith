@@ -1,6 +1,7 @@
 using Ardalis.Result;
 using MediatR;
 using RiverBooks.OrderProcessing.Endpoints.Models;
+using RiverBooks.OrderProcessing.Interfaces;
 
 namespace RiverBooks.OrderProcessing.Endpoints.ListOrdersForUser;
 
