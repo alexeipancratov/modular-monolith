@@ -33,6 +33,7 @@ builder.Services.AddUserModuleServices(builder.Configuration, logger, mediatRAss
 
 // Set up MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));
+builder.Services.AddMediatrLoggingBehavior();
 builder.Services.AddScoped<IDomainEventDispatcher, MediatrDomainEventDispatcher>();
 
 var app = builder.Build();
