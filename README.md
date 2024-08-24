@@ -62,3 +62,10 @@ This is the usual approach in modular monoliths. However, in order to continue e
 principles we're using ArchUnit tests.
 NOTE: We're not separating logic into several assemblies in Modular Monolith because
 we want to be able to enforce access using the `internal` keyword. (review this again later)
+
+## Validation
+In the Users module we're using the FluentValidation Nuget package. The validation is configured
+as a MediatR behavior which leverages the FluentValidation validators. Therefore, we follow the
+Chain of Responsibility pattern. The validation is implemented at the MediatR command level
+as opposed to Endpoint level in order to be able to more easily switch to another ASP.NET framework
+in the future (and to avoid breaking changes which could be done in the FastEndpoints).
