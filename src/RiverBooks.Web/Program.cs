@@ -6,6 +6,7 @@ using RiverBooks.Books;
 using RiverBooks.OrderProcessing;
 using RiverBooks.SharedKernel;
 using RiverBooks.Users;
+using RiverBooks.Users.UseCases.Cart.AddItem;
 using Serilog;
 
 var logger = Log.Logger = new LoggerConfiguration()
@@ -33,7 +34,12 @@ builder.Services.AddUserModuleServices(builder.Configuration, logger, mediatRAss
 
 // Set up MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies.ToArray()));
+
+// Behaviors registration order matters.
+// In our case for each request we'll have: logging->validation.
 builder.Services.AddMediatrLoggingBehavior();
+builder.Services.AddMediatrFluentValidationBehavior();
+builder.Services.AddValidatorsFromAssemblyContaining<AddItemToCartCommandValidator>();
 builder.Services.AddScoped<IDomainEventDispatcher, MediatrDomainEventDispatcher>();
 
 var app = builder.Build();
