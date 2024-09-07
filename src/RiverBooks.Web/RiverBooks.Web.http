@@ -1,17 +1,15 @@
-@RiverBooks.Web_HostAddress = https://localhost:7153
-
 ###
 # Get all books - Books module
-GET {{RiverBooks.Web_HostAddress}}/books/
+GET {{RiverBooks_WebHostAddress}}/books/
 Accept: application/json
 
 ###
 # Get a book - Books module
-GET {{RiverBooks.Web_HostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
+GET {{RiverBooks_WebHostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
 
 ###
 # Add a new book - Books module
-POST {{RiverBooks.Web_HostAddress}}/books
+POST {{RiverBooks_WebHostAddress}}/books
 Accept: application/json
 Content-Type: application/json
 
@@ -23,11 +21,11 @@ Content-Type: application/json
 
 ###
 # Delete a book - Books module
-DELETE {{RiverBooks.Web_HostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
+DELETE {{RiverBooks_WebHostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
 
 ###
 # Update price of a book - Books module
-POST {{RiverBooks.Web_HostAddress}}/books/98999DE8-FBEF-4918-ADFE-DDA0F8B702D9/pricehistory
+POST {{RiverBooks_WebHostAddress}}/books/98999DE8-FBEF-4918-ADFE-DDA0F8B702D9/pricehistory
 Accept: application/json
 Content-Type: application/json
 
@@ -37,18 +35,18 @@ Content-Type: application/json
 
 ###
 # Create new user - Users module
-POST {{RiverBooks.Web_HostAddress}}/users
+POST {{RiverBooks_WebHostAddress}}/users
 Accept: application/json
 Content-Type: application/json
 
 {
-  "email": "alexei@test.com",
+  "email": "alexei6@test.com",
   "password": "Password1!"
 }
 
 ###
 # Login - Users module
-POST {{RiverBooks.Web_HostAddress}}/users/login
+POST {{RiverBooks_WebHostAddress}}/users/login
 Accept: application/json
 Content-Type: application/json
 
@@ -61,7 +59,7 @@ Content-Type: application/json
 @token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJhbGV4ZWlAdGVzdC5jb20iLCJpYXQiOjE3MjQ1MzExOTQsImV4cCI6MTcyNDUzNDc5NCwibmJmIjoxNzI0NTMxMTk0fQ.JImoZQNtbZjuu3VajWV4JTJKmglGP3fdwGYBfoHTvdY
 
 # Add item to cart - Users module
-POST {{RiverBooks.Web_HostAddress}}/cart
+POST {{RiverBooks_WebHostAddress}}/cart
 Accept: application/json
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -73,19 +71,19 @@ Content-Type: application/json
 
 ###
 # List items in cart - Users module
-GET {{RiverBooks.Web_HostAddress}}/cart
+GET {{RiverBooks_WebHostAddress}}/cart
 Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
 # Get orders - Order Processing module
-GET {{RiverBooks.Web_HostAddress}}/orders
+GET {{RiverBooks_WebHostAddress}}/orders
 Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
 # Checkout cart - Users module
-POST {{RiverBooks.Web_HostAddress}}/cart/checkout
+POST {{RiverBooks_WebHostAddress}}/cart/checkout
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -96,7 +94,7 @@ Authorization: Bearer {{token}}
 
 ###
 # Add address to user = Users module
-POST {{RiverBooks.Web_HostAddress}}/users/addresses
+POST {{RiverBooks_WebHostAddress}}/users/addresses
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -111,4 +109,4 @@ Authorization: Bearer {{token}}
 
 ###
 # Flush Redis cache
-POST {{RiverBooks.Web_HostAddress}}/flushcache
+POST {{RiverBooks_WebHostAddress}}/flushcache
