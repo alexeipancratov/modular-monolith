@@ -37,7 +37,7 @@ internal class ReadThroughOrderAddressCache(
     // fetch data from source directly
     _logger.LogInformation("Address {id} not found; fetching from source", addressId);
 
-    var queryResult = await _mediator.Send(new UserAddressDetailsByIdQuery(addressId));
+    var queryResult = await _mediator.Send(new GetUserAddressDetailsByIdQuery(addressId));
 
     if (!queryResult.IsSuccess)
     {

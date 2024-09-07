@@ -69,3 +69,16 @@ as a MediatR behavior which leverages the FluentValidation validators. Therefore
 Chain of Responsibility pattern. The validation is implemented at the MediatR command level
 as opposed to Endpoint level in order to be able to more easily switch to another ASP.NET framework
 in the future (and to avoid breaking changes which could be done in the FastEndpoints).
+
+## EmailSending module
+This module relies on an SMTP server to be running.
+E.g., `docker run --name=papercut -p 25:25 -p 37408:37408 jijiechen/papercut:latest -d`
+
+## Runtime dependencies
+This project requires the following dependencies to be up and running:
+- SQL DB (for data)
+- Redis (for caching data)
+- SMTP server (e.g., "Papercut", with default settings)
+
+## Outstanding issues
+- Cart isn't being cleared after checkout

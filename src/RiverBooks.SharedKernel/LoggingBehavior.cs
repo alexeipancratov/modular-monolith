@@ -24,7 +24,7 @@ public class LoggingBehavior<TRequest, TResponse>(ILogger<LoggingBehavior<TReque
       IList<PropertyInfo?> props = new List<PropertyInfo?>(myType.GetProperties());
       foreach (PropertyInfo? prop in props)
       {
-        object? propValue = prop?.GetType();
+        object? propValue = prop?.GetValue(request, null);
         _logger.LogInformation("Property {Property} : {@Value}", prop?.Name, propValue);
       }
     }

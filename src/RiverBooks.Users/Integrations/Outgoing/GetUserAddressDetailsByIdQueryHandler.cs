@@ -6,12 +6,12 @@ using RiverBooks.Users.Interfaces;
 
 namespace RiverBooks.Users.Integrations.Outgoing;
 
-internal class UserAddressDetailsByIdQueryHandler(IReadOnlyUserStreetAddressRepository addressRepository)
-  : IRequestHandler<UserAddressDetailsByIdQuery, Result<UserAddressDetails>>
+internal class GetUserAddressDetailsByIdQueryHandler(IReadOnlyUserStreetAddressRepository addressRepository)
+  : IRequestHandler<GetUserAddressDetailsByIdQuery, Result<UserAddressDetails>>
 {
   private readonly IReadOnlyUserStreetAddressRepository _addressRepository = addressRepository;
 
-  public async Task<Result<UserAddressDetails>> Handle(UserAddressDetailsByIdQuery request, CancellationToken cancellationToken)
+  public async Task<Result<UserAddressDetails>> Handle(GetUserAddressDetailsByIdQuery request, CancellationToken cancellationToken)
   {
     var address = await _addressRepository.GetByIdAsync(request.AddressId);
 
