@@ -75,6 +75,11 @@ This module relies on an SMTP server to be running.
 E.g., `docker run --name=papercut -p 25:25 -p 37408:37408 jijiechen/papercut:latest -d`.
 And also on MongoDB server - `docker run --name mongodb -d -p 27017:27017 mongo`.
 
+It follows (at least partially) the Vertical Slice architecture.
+
+NOTE: each module can follow different patterns internally (i.e., Vertical Slice architecture, Clean Architecture, etc.)
+while the whole application is following the Modular Monolith architecture.
+
 ### Outbox pattern
 Allows to send emails at a later point, thus making this process more reliable and non-blocking.
 
@@ -89,7 +94,7 @@ This project requires the following dependencies to be up and running:
 - SQL DB (for data)
 - Redis (for caching data)
 - SMTP server (e.g., "Papercut", with default settings)
-- MongoDB
+- MongoDB (for emails - Outbox pattern)
 
 ## Outstanding issues
 - Cart isn't being cleared after checkout

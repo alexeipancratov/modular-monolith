@@ -6,14 +6,41 @@ using RiverBooks.EmailSending.Services.Interfaces;
 
 namespace RiverBooks.EmailSending.Services;
 
+// Vertical slice architecture here as well.
+
+internal interface IGetEmailsFromOutboxService
+{
+  Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity();
+}
+
+internal class MongoDbGetEmailsFromOutboxService(IMongoCollection<EmailOutboxEntity> emailCollection)
+  : IGetEmailsFromOutboxService
+{
+  private readonly IMongoCollection<EmailOutboxEntity> _emailCollection = emailCollection;
+  
+  public async Task<Result<EmailOutboxEntity>> GetUnprocessedEmailEntity()
+  {
+    var filter = Builders<EmailOutboxEntity>.Filter.Eq(entity => entity.DateTimeUtcProcessed, null);
+    var unsentEmailEntity = await _emailCollection.Find(filter).FirstOrDefaultAsync();
+
+    if (unsentEmailEntity == null)
+    {
+      return Result.NotFound();
+    }
+
+    return unsentEmailEntity;
+  }
+}
+
+
 internal class DefaultSendEmailsFromOutboxService(
-  IOutboxService outboxService,
+  IGetEmailsFromOutboxService outboxService,
   ISendEmailService sendEmailService,
   // TODO: Abstract this collection behind a repository.
   IMongoCollection<EmailOutboxEntity> emailCollection,
   ILogger<DefaultSendEmailsFromOutboxService> logger) : ISendEmailsFromOutboxService
 {
-  private readonly IOutboxService _outboxService = outboxService;
+  private readonly IGetEmailsFromOutboxService _outboxService = outboxService;
   private readonly ISendEmailService _sendEmailService = sendEmailService;
   private readonly IMongoCollection<EmailOutboxEntity> _emailCollection = emailCollection;
   private readonly ILogger<DefaultSendEmailsFromOutboxService> _logger = logger;
