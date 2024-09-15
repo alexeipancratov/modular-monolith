@@ -16,8 +16,9 @@ public class MimeKitSendEmailService(ILogger<MimeKitSendEmailService> logger) : 
       subject, body);
     
     using var client = new SmtpClient();
+    client.Timeout = 5_000;
     // TODO: Read SMTP server ULR from config.
-    await client.ConnectAsync("localhost", 25, false, cancellationToken);
+    await client.ConnectAsync("127.0.0.1", 25, false, cancellationToken);
     var message = new MimeMessage();
     message.From.Add(new MailboxAddress(from, from));
     message.To.Add(new MailboxAddress(to, to));
@@ -27,6 +28,8 @@ public class MimeKitSendEmailService(ILogger<MimeKitSendEmailService> logger) : 
     await client.SendAsync(message, cancellationToken);
     _logger.LogInformation("Email sent");
     
+    // TODO: Reuse client for the entire app execution as otherwise we cannot disconnect multiple times.
+    // This currently throws an exception.
     await client.DisconnectAsync(true, cancellationToken);
   }
 }

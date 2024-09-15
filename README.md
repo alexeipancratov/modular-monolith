@@ -72,13 +72,24 @@ in the future (and to avoid breaking changes which could be done in the FastEndp
 
 ## EmailSending module
 This module relies on an SMTP server to be running.
-E.g., `docker run --name=papercut -p 25:25 -p 37408:37408 jijiechen/papercut:latest -d`
+E.g., `docker run --name=papercut -p 25:25 -p 37408:37408 jijiechen/papercut:latest -d`.
+And also on MongoDB server - `docker run --name mongodb -d -p 27017:27017 mongo`.
+
+### Outbox pattern
+Allows to send emails at a later point, thus making this process more reliable and non-blocking.
+
+NOTE: We could've implemented it directly in the Order Service so that it gets persisted as part of a SQL transaction.
+But that would be an overkill in our example. Therefore, we opted for persisting outbox in Email Service's
+own DB, which is MongoDB.
+
+We have a background service which retrieves undelivered emails and tries to send them, every 10 seconds.
 
 ## Runtime dependencies
 This project requires the following dependencies to be up and running:
 - SQL DB (for data)
 - Redis (for caching data)
 - SMTP server (e.g., "Papercut", with default settings)
+- MongoDB
 
 ## Outstanding issues
 - Cart isn't being cleared after checkout

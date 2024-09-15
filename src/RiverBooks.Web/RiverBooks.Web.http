@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ###
-@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJhbGV4ZWlAdGVzdC5jb20iLCJpYXQiOjE3MjU3NDE0NjEsImV4cCI6MTcyNTc0NTA2MSwibmJmIjoxNzI1NzQxNDYxfQ.yqCIuCNbW2dI1OrYpOueXoj2SEq-icy6oRWH2yJZHRM
+@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJhbGV4ZWlAdGVzdC5jb20iLCJpYXQiOjE3MjU3NDYwOTQsImV4cCI6MTcyNTc0OTY5NCwibmJmIjoxNzI1NzQ2MDk0fQ.2W07bVmm4-5-blE1YbDl_OCMzPz-TPoZiS3Tl4qiojw
 
 # Add item to cart - Users module
 POST {{RiverBooks_WebHostAddress}}/cart
@@ -110,3 +110,10 @@ Authorization: Bearer {{token}}
 ###
 # Flush Redis cache
 POST {{RiverBooks_WebHostAddress}}/flushcache
+
+
+###
+# List Outbox emails
+GET {{RiverBooks_WebHostAddress}}/emails
+Content-Type: application/json
+Authorization: Bearer {{token}}
