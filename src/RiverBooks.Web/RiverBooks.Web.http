@@ -117,3 +117,9 @@ POST {{RiverBooks_WebHostAddress}}/flushcache
 GET {{RiverBooks_WebHostAddress}}/emails
 Content-Type: application/json
 Authorization: Bearer {{token}}
+
+
+###
+# TOP Sales
+GET {{RiverBooks_WebHostAddress}}/topSales?month=9&year=2024
+Accept: application/json
