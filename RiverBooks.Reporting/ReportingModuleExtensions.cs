@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RiverBooks.Reporting.Integrations;
 using RiverBooks.Reporting.Services;
 using Serilog;
 
@@ -17,6 +18,8 @@ public static class ReportingModuleExtensions
     
     // Services
     services.AddScoped<ITopSellingBooksReportService, TopSellingBooksReportService>();
+    services.AddScoped<ISalesReportService, DefaultSalesReportService>();
+    services.AddScoped<OrderIngestionService>();
     
     mediatRAssemblies.Add(typeof(ReportingModuleExtensions).Assembly);
     

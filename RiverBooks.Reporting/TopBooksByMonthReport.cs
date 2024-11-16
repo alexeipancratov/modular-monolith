@@ -1,6 +1,6 @@
 namespace RiverBooks.Reporting;
 
-public class TopBookByMonthReport
+public class TopBooksByMonthReport
 {
   public int Year { get; set; }
 

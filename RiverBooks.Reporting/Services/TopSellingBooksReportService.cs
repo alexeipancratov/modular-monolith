@@ -19,7 +19,7 @@ internal class TopSellingBooksReportService : ITopSellingBooksReportService
     _connectionString = configuration.GetConnectionString("OrderProcessingConnectionString")!;
   }
   
-  public async Task<TopBookByMonthReport> ReachInSqlQuery(int month, int year)
+  public async Task<TopBooksByMonthReport> ReachInSqlQuery(int month, int year)
   {
     const string sql = """
                        SELECT b.Id, b.Title, b.Author, SUM(oi.Quantity) as Units,
@@ -36,7 +36,7 @@ internal class TopSellingBooksReportService : ITopSellingBooksReportService
     _logger.LogInformation("Executing query {sql}", sql);
     var results = await conn.QueryAsync<BookSalesResult>(sql, new { month, year });
 
-    var report = new TopBookByMonthReport
+    var report = new TopBooksByMonthReport
     {
       Month = month,
       Year = year,

@@ -89,6 +89,16 @@ own DB, which is MongoDB.
 
 We have a background service which retrieves undelivered emails and tries to send them, every 10 seconds.
 
+## Reporting module
+This module was implemented using two approaches: reach in (generally an antipattern) and event ingestion pattern.
+The first one allows to get the job done if team is constrained on resources and it will work as long as all data
+lives in a single DB. However, the second pattern is more scalable and flexible. Nonetheless, it has its limitations
+too, e.g., it probably wouldn't scale with too many events per second.
+
+Our implementation of the overall app is quite simple since we process domain events in the same transaction
+they have been emitted. So we don't have to deal with lost messages, but this is something we'd need to take care of
+if we switch to Kafka, ServiceBus etc.
+
 ## Runtime dependencies
 This project requires the following dependencies to be up and running:
 - SQL DB (for data)

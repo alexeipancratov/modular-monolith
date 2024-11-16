@@ -10,5 +10,5 @@ internal interface ITopSellingBooksReportService
   /// <param name="month"></param>
   /// <param name="year"></param>
   /// <returns>Report data.</returns>
-  Task<TopBookByMonthReport> ReachInSqlQuery(int month, int year);
+  Task<TopBooksByMonthReport> ReachInSqlQuery(int month, int year);
 }
