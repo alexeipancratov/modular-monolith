@@ -5,7 +5,7 @@ Accept: application/json
 
 ###
 # Get a book - Books module
-GET {{RiverBooks_WebHostAddress}}/books/12c87934-3fac-4008-8553-49aecc4bd762
+GET {{RiverBooks_WebHostAddress}}/books/98999de8-fbef-4918-adfe-dda0f8b702d9
 
 ###
 # Add a new book - Books module
@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ###
-@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJhbGV4ZWlAdGVzdC5jb20iLCJpYXQiOjE3MzE3ODk2NDcsImV4cCI6MTczMTc5MzI0NywibmJmIjoxNzMxNzg5NjQ3fQ.tjpp4f_tkIbNaMMsDriMZOIBmtruZk_lGp4Vrj54A18
+@token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbEFkZHJlc3MiOiJhbGV4ZWlAdGVzdC5jb20iLCJpYXQiOjE3MzIzODkzMzIsImV4cCI6MTczMjM5MjkzMiwibmJmIjoxNzMyMzg5MzMyfQ.z-APaawxs_XaHkVCTpIozPS1BkAIzkduFRz57ccNovA
 
 # Add item to cart - Users module
 POST {{RiverBooks_WebHostAddress}}/cart
