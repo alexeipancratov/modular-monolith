@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 		Directory.build.props = Directory.build.props
 		.editorconfig = .editorconfig
 		README.md = README.md
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiverBooks.Books.Tests", "tests\RiverBooks.Books.Tests\RiverBooks.Books.Tests.csproj", "{FB39E325-3D0C-44BA-BA9D-4EA35CC5B6D9}"

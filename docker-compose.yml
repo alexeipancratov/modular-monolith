@@ -1,0 +1,28 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: azuresqledge
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y" # Accept the EULA
+      SA_PASSWORD: "Serv1234" # Set the admin password
+
+  redis:
+    image: redis:latest
+    container_name: some-redis
+    ports:
+      - "6379:6379"
+  
+  papercut:
+    image: jijiechen/papercut:latest
+    container_name: papercut
+    ports:
+      - "37408:37408"
+      - "25:25"
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
